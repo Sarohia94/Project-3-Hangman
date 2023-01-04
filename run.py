@@ -14,6 +14,19 @@ def get_random_word():
 
 print(get_random_word())  # check
 
+
+def display_game(incorrect_letters, correct_letters, word):
+    """
+    Displays hangman game to the user and what letters the user has guessed
+    """
+    print(HANGMAN[len(incorrect_letters)])
+
+    print(f"There are {len(word)} letters in this word")
+
+    guess_word = "_" * len(word)
+    print(f"Word: {guess_word} \n")
+
+
 HANGMAN = ['''
    +---+
        |
@@ -50,3 +63,13 @@ HANGMAN = ['''
   /|\  |
   / \  |
       ===''']
+
+
+def main():
+    word = get_random_word()
+    incorrect_letters = ""
+    correct_letters = ""
+    display_game(incorrect_letters, correct_letters, word)
+
+
+main()
