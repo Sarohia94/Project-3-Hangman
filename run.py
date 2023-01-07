@@ -1,7 +1,7 @@
+import os
 import random
 from words import word_list
-
-import os
+from hangman import HANGMAN
 
 
 def get_random_word():
@@ -47,7 +47,7 @@ def display_game(incorrect_letters, correct_letters, word):
                     os.system("clear")
                     print("\nYes!", guess, "is in the word!")
                     correct_letters = correct_letters + guess
-                
+
                     word_as_list = list(guess_word)
                     indices = [i for i, letter in enumerate(word)
                                if letter == guess]
@@ -61,45 +61,10 @@ def display_game(incorrect_letters, correct_letters, word):
             print(f"\nInvalid data: {e} please enter a single letter")
 
 
-HANGMAN = ['''
-   +---+
-       |
-       |
-       |
-      ===''', '''
-   +---+
-   O   |
-       |
-       |
-      ===''', '''
-   +---+
-   O   |
-   |   |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|   |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-  /    |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-  / \  |
-      ===''']
-
-
 def main():
+    """
+    Run all program functions
+    """
     incorrect_letters = ""
     correct_letters = ""
     word = get_random_word()
