@@ -5,6 +5,9 @@ from words import word_list
 from hangman import HANGMAN
 
 NAME = ""
+TRIES = 6
+INCORRECT = ""
+CORRECT = ""
 
 
 def get_random_word():
@@ -56,9 +59,9 @@ def menu():
     Option to play game or learn how to play.
     """
     print(f"""{NAME} would you like to:\n
-          1. Start game\n
+          1. Play game\n
           2. Learn how to play?\n""")
-    print("Please enter 1 to start game or 2 to learn how to play.\n")
+    print("Please enter 1 to play game or 2 to learn how to play.\n")
     choice_made = False
     while choice_made is False:
         menu_choice = input("Number: ")
@@ -72,7 +75,7 @@ def menu():
             else:
                 os.system("clear")
                 start_game()
-                raise ValueError("Please enter 1 to start game" +
+                raise ValueError("Please enter 1 to play game" +
                                  " or 2 to learn how to play.\n")
         except ValueError as e:
             print(f"\nInvalid data:\n{e}")
@@ -100,13 +103,13 @@ def how_to_play():
       i.e. in the order: head, body, left arm, right arm, left leg, right leg.
       """)
     print(f"Good luck {NAME}! Guess the word and win the game!\n")
-    print("Please enter 1 to start game or 2 to return to menu.\n")
+    print("Please enter 1 to play game or 2 to return to menu.\n")
     choice_made = False
     while choice_made is False:
         menu_choice = input("Number: ")
         try:
             if menu_choice == "1":
-                start_game()
+                display_game()
                 choice_made = True
             if menu_choice == "2":
                 menu()
@@ -114,21 +117,22 @@ def how_to_play():
             else:
                 os.system("clear")
                 start_game()
-                raise ValueError("Please enter 1 to start game" +
+                raise ValueError("Please enter 1 to play game" +
                                  " or 2 to return to menu.\n""")
         except ValueError as e:
             print(f"\nInvalid data: {e}")
 
 
-def display_game(incorrect_letters, correct_letters, word):
+def display_game():
     """
     Displays hangman game to the user.
     If user runs out of tries without completing the word they're hanged.
     If the user completes the word without running out of tries they win.
     """
-    tries = 6
-    guess_word = "_" * len(word)
+    os.system("clear")
+    global TRIES
     word = get_random_word()
+    guess_word = "_" * len(word)
 
     print(f"You have {len(HANGMAN)-1} attempts to guess the word!")
 
@@ -137,57 +141,77 @@ def display_game(incorrect_letters, correct_letters, word):
     print(word)  # check
 
     game_over = False
-    while not game_over and tries > 0:
-        print(HANGMAN[len(incorrect_letters)])
+    while not game_over and TRIES > 0:
+        print(HANGMAN[len(INCORRECT)])
         print(f"\nWord: {guess_word}\n")
-        guess = input("\nPlease guess a letter:").upper()
-        if tries == 0:
+        ask_for_input()
+        if TRIES == 0:
             game_over = True
             print("You've been hanged!\n")
             print(f"The word was {word}\n")
         else:
-            if len(word) == len(correct_letters):
+            if len(word) == len(CORRECT):
                 game_over = True
                 print("Congratulations! You've guessed the word.")
 
 
-# Code below was originally in display_game but became too complex
-# This is to be organised in to smaller functions
+def ask_for_input():
+    """
+    While the user still has tries, user input to guess is requested.
+    If guess is valid then aslong as it hasn't been already guessed,
+    the check_correct function is called to check if it is in the word.
+    Otherwise if guess is invalid error messages are raised.
+    """
+    check = True
+    guess = ""
+    while check:
+        guess = input("\nPlease guess a letter:").upper()
+        try:
+            if len(guess) == 1 and guess.isalpha():
+                if guess in INCORRECT or CORRECT:
+                    raise ValueError("You've already guessed this letter",
+                                     guess)
+                else:
+                    check_correct(guess)
+                    check = False
+            if len(guess) > 1:
+                raise ValueError(f"You have guessed {len(guess)} "
+                                 + "characters. Please guess 1 letter")
+            if not guess.isalpha():
+                raise ValueError("Please guess a letter.")
+        except ValueError as e:
+            print(f"\nInvalid data: {e}")
+        return guess
 
-# try:
-#    if len(guess) == 1 and guess.isalpha():
-#        if guess not in word:
-#            os.system("clear")
-#            print(guess, "is not in the word\n")
-#            incorrect_letters = incorrect_letters + guess
-#            tries -= 1
-#            print(f"You have {tries} attempts remaining!")
-#            print('\nIncorrect guesses:', end=" ")
-#            for guess in incorrect_letters:
-#                print(guess, end=" ")
 
-#        else:
-#            os.system("clear")
-#            print("\nYes!", guess, "is in the word!")
-#            correct_letters = correct_letters + guess
-#            print(correct_letters)
-#            word_as_list = list(guess_word)
-#            indices = [i for i, letter in enumerate(word)
-#                       if letter == guess]
-#            for index in indices:
-#                word_as_list[index] = guess
-#                guess_word = "".join(word_as_list)
+def check_correct(guess):
+    """
+    Checks if guess is in word.
+    If so, correct letters are updated and letter is printed to guess_word.
+    If not then incorrect letters are updated.
+    """
+    global INCORRECT
+    global CORRECT
 
-#    else:
-#        os.system("clear")
-#        if len(guess) > 1:
-#            raise ValueError(f"You have guessed {len(guess)} "
-#                             + "characters. Please guess 1 letter")
-#        if not guess.isalpha():
-#            raise ValueError("Please guess a letter.")
-
-# except ValueError as e:
-#    print(f"\nInvalid data: {e}")
+    if guess in word:
+        os.system("clear")
+        print("\nYes!", guess, "is in the word!")
+        CORRECT = CORRECT + guess
+        word_as_list = list(guess_word)
+        indices = [i for i, letter in enumerate(word)
+                   if letter == guess]
+        for index in indices:
+            word_as_list[index] = guess
+            guess_word = "".join(word_as_list)
+        return guess
+    else:
+        os.system("clear")
+        print(guess, "is not in the word\n")
+        INCORRECT = INCORRECT + guess
+        print(f"You have {TRIES} attempts remaining!")
+        print('\nIncorrect guesses:', end=" ")
+        for guess in INCORRECT:
+            print(guess, end=" ")
 
 
 def main():
@@ -198,16 +222,13 @@ def main():
     player_name()
     menu_choice = menu()
     if menu_choice == "1":
+        word = get_random_word()
         display_game()
     elif menu_choice == "2":
+        os.system("clear")
         how_to_play()
     else:
         return
-
-    incorrect_letters = ""
-    correct_letters = ""
-    word = get_random_word()
-    display_game(incorrect_letters, correct_letters, word)
 
 
 main()
