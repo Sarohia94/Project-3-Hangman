@@ -147,12 +147,13 @@ def display_game():
         ask_for_input()
         if len(HANGMAN)-1 == len(INCORRECT):
             game_over = True
-            print("You've been hanged!\n")
+            print("\nOh no! You've been hanged!\n")
+            print(HANGMAN[6])
             print(f"The word was {WORD}\n")
         else:
-            if len(WORD) == len(CORRECT):
+            if "_" not in GUESS_WORD:
                 game_over = True
-                print("Congratulations! You've guessed the word.")
+                print("Congratulations! You've guessed the word!")
 
 
 def ask_for_input():
@@ -162,14 +163,15 @@ def ask_for_input():
     the check_correct function is called to check if it is in the word.
     Otherwise if guess is invalid error messages are raised.
     """
-    global TRIES
     check = True
     guess = ""
     while check:
         guess = input("\nPlease guess a letter: ").upper()
         try:
             if len(guess) == 1 and guess.isalpha():
-                if guess in INCORRECT or CORRECT:
+                if guess in INCORRECT or guess in CORRECT:
+                    print("line 173", INCORRECT)  # Check
+                    print("line 174", CORRECT)  # check
                     raise ValueError("You've already guessed this letter",
                                      guess)
                 else:
@@ -204,11 +206,13 @@ def check_correct(guess):
 #        os.system("clear")
         print("\nYes!", guess, "is in the word!")
         CORRECT = CORRECT + guess
+        print("line 209", CORRECT)  # check
         word_as_list = list(GUESS_WORD)
         indices = [i for i, letter in enumerate(WORD.upper())
                    if letter == guess]
         for index in indices:
             word_as_list[index] = guess
+            print("line 215", GUESS_WORD)
             GUESS_WORD = "".join(word_as_list)
     else:
 #        os.system("clear")
