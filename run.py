@@ -2,10 +2,8 @@
 import os
 import random
 from words import word_list
-from hangman import HANGMAN
-from hangman import WELCOME
-from hangman import GAME_OVER
-from hangman import WIN
+from hangman import HANGMAN, WELCOME, GAME_OVER, WIN, BYE
+from time import sleep
 
 NAME = ""
 TRIES = 6
@@ -121,6 +119,13 @@ def display_game():
     os.system("clear")
     global TRIES
     global GUESS_WORD
+    global INCORRECT
+    global CORRECT
+
+    TRIES = 6
+    INCORRECT = ""
+    CORRECT = ""
+
     WORD = get_random_word()
     GUESS_WORD = "_" * len(WORD)
     print(f"Good luck {NAME}! Guess the word and win the game!\n")
@@ -128,6 +133,8 @@ def display_game():
     print(f"\nThere are {len(WORD)} letters in this word.")
 
     print(WORD)  # check
+    print("line 129", CORRECT)
+    print("line 130", INCORRECT)
 
     game_over = False
     while not game_over and TRIES > 0:
@@ -140,11 +147,13 @@ def display_game():
             print("\nOh no! You've been hanged!\n")
             print(HANGMAN[6])
             print(f"The word was {WORD}\n")
+            play_again()
         else:
             if "_" not in GUESS_WORD:
                 game_over = True
                 print(WIN, f"Well done {NAME}!" +
-                      " You've guessed the word and won!")
+                      " You've guessed the word and won!\n")
+                play_again()
 
 
 def ask_for_input():
@@ -214,6 +223,26 @@ def check_correct(guess):
         print('\nIncorrect guesses:', end=" ")
         for guess in INCORRECT:
             print(guess, end=" ")
+
+
+def play_again():
+    """
+    The user is given the option to play again.
+    If the user chooses not to play a good bye message
+    is displayed before returning user to start_game.
+    """
+    while True:
+        if input(F"{NAME} would you like to play again?" +
+                 " Enter any key to quit" +
+                 " or Y to play again: ").upper() == "Y":
+            os.system("clear")
+            display_game()
+        else:
+            print(BYE)
+            print(f"Thanks for playing {NAME}!")
+            sleep(3)
+            os.system("clear")
+            main()
 
 
 def main():
