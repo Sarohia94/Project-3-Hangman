@@ -3,6 +3,9 @@ import os
 import random
 from words import word_list
 from hangman import HANGMAN
+from hangman import WELCOME
+from hangman import GAME_OVER
+from hangman import WIN
 
 NAME = ""
 TRIES = 6
@@ -17,7 +20,6 @@ def get_random_word():
     Gets a random word from words_list array from the word.py file.
     """
     global WORD
-
     WORD = random.choice(word_list)
     return WORD.upper()
 
@@ -26,17 +28,7 @@ def start_game():
     """
     Welcomes user and introduces game
     """
-    print("""
- _
-| |
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                    __/ |
-                   |___/
-    \n""")
-
+    print(WELCOME)
     print("Let's play hangman!\n")
 
 
@@ -99,9 +91,10 @@ def how_to_play():
       If the guessed letter is not in the unknown word you will lose a try.\n
       This will correspond to a person on the gallow being drawn,
       one part for each incorrect letter guessed.\n
+      i.e. in the order: head, body, left arm, right arm, left leg, right 
+      leg.\n
       As such you will have 6 tries to guess before you are hanged and
-      lose the game!\n
-      i.e. in the order: head, body, left arm, right arm, left leg, right leg.
+      lose the game!
       """)
     print("Please enter 1 to play game.\n")
     choice_made = False
@@ -128,14 +121,10 @@ def display_game():
     os.system("clear")
     global TRIES
     global GUESS_WORD
-
     WORD = get_random_word()
     GUESS_WORD = "_" * len(WORD)
-
     print(f"Good luck {NAME}! Guess the word and win the game!\n")
-
     print(f"You have {len(HANGMAN)-1} attempts to guess the word.")
-
     print(f"\nThere are {len(WORD)} letters in this word.")
 
     print(WORD)  # check
@@ -147,13 +136,15 @@ def display_game():
         ask_for_input()
         if len(HANGMAN)-1 == len(INCORRECT):
             game_over = True
+            print(GAME_OVER)
             print("\nOh no! You've been hanged!\n")
             print(HANGMAN[6])
             print(f"The word was {WORD}\n")
         else:
             if "_" not in GUESS_WORD:
                 game_over = True
-                print("Congratulations! You've guessed the word!")
+                print(WIN, f"Well done {NAME}!" +
+                      " You've guessed the word and won!")
 
 
 def ask_for_input():
@@ -178,7 +169,7 @@ def ask_for_input():
                     check_correct(guess)
             if len(guess) > 1:
                 raise ValueError(f"You have guessed {len(guess)} "
-                                 + "characters. Please guess 1 letter")
+                                 + "characters. Please guess 1 letter.")
             if not guess.isalpha():
                 raise ValueError("Please guess a letter.")
         except ValueError as e:
@@ -203,7 +194,7 @@ def check_correct(guess):
     print("line 206", WORD)  # check
 
     if guess in WORD.upper():
-#        os.system("clear")
+        os.system("clear")
         print("\nYes!", guess, "is in the word!")
         CORRECT = CORRECT + guess
         print("line 209", CORRECT)  # check
@@ -215,7 +206,7 @@ def check_correct(guess):
             print("line 215", GUESS_WORD)
             GUESS_WORD = "".join(word_as_list)
     else:
-#        os.system("clear")
+        os.system("clear")
         print(guess, "is not in the word.\n")
         INCORRECT = INCORRECT + guess
         TRIES -= 1
