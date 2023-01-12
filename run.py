@@ -1,9 +1,10 @@
 # All code and resources used are credited in the README file.
 import os
 import random
+from time import sleep
+from termcolor import colored
 from words import word_list
 from hangman import HANGMAN, WELCOME, GAME_OVER, WIN, BYE
-from time import sleep
 
 NAME = ""
 TRIES = 6
@@ -24,10 +25,11 @@ def get_random_word():
 
 def start_game():
     """
-    Welcomes user and introduces game
+    Displays hangman name with message to play.
     """
-    print(WELCOME)
+    print(colored(WELCOME, "magenta"))
     print("Let's play hangman!\n")
+    print(colored(HANGMAN[6], "yellow", attrs=["bold"]))
 
 
 def player_name():
@@ -37,14 +39,14 @@ def player_name():
     """
     global NAME
     while True:
-        NAME = input("What is your name?\n").upper()
+        NAME = input(colored("\nWhat is your name?\n", "cyan")).upper()
         if NAME.isalpha():
             break
         os.system("clear")
         start_game()
-        print("Please enter a valid name using letters.")
+        print(colored("\nPlease enter a valid name using letters.", "red"))
     os.system("clear")
-    print(f"Welcome {NAME}!")
+    print(colored(f"Welcome {NAME}!\n", "magenta"))
     return NAME
 
 
@@ -53,13 +55,14 @@ def menu():
     Requests user to choose from menu.
     Option to play game or learn how to play.
     """
-    print(f"""{NAME} would you like to:\n
-          1. Play game\n
+    print(f"""{NAME}, would you like to:\n
+          1. Play the game\n
           2. Learn how to play?\n""")
-    print("Please enter 1 to play game or 2 to learn how to play.\n")
+    print(colored("Please enter 1 to play the game or 2 to learn how to play.",
+                  "cyan"))
     choice_made = False
     while choice_made is False:
-        menu_choice = input("Number: ")
+        menu_choice = input("\nNumber: ")
         try:
             if menu_choice == "1":
                 choice_made = True
@@ -73,7 +76,7 @@ def menu():
                 raise ValueError("Please enter 1 to play game" +
                                  " or 2 to learn how to play.\n")
         except ValueError as e:
-            print(f"\nInvalid data:\n{e}")
+            print(colored(f"\nInvalid data:\n{e}", "red"))
 
 
 def how_to_play():
@@ -94,7 +97,8 @@ def how_to_play():
       As such you will have 6 tries to guess before you are hanged and
       lose the game!
       """)
-    print("Please enter 1 to play game.\n")
+    print(colored("Now you know the rules, please enter 1 to play game.\n",
+                  "cyan"))
     choice_made = False
     while choice_made is False:
         menu_choice = input("Number: ")
@@ -105,9 +109,9 @@ def how_to_play():
             else:
                 os.system("clear")
                 start_game()
-                raise ValueError("Please enter 1 to play game.\n")
+                raise ValueError("Please enter 1 to play the game.\n")
         except ValueError as e:
-            print(f"\nInvalid data: {e}")
+            print(colored(f"\nInvalid data: {e}", "red"))
 
 
 def display_game():
@@ -128,7 +132,8 @@ def display_game():
 
     WORD = get_random_word()
     GUESS_WORD = "_" * len(WORD)
-    print(f"Good luck {NAME}! Guess the word and win the game!\n")
+    print(colored(f"Good luck {NAME}! Guess the word and win the game!\n",
+                  "magenta"))
     print(f"You have {len(HANGMAN)-1} attempts to guess the word.")
     print(f"\nThere are {len(WORD)} letters in this word.")
 
@@ -138,21 +143,24 @@ def display_game():
 
     game_over = False
     while not game_over and TRIES > 0:
-        print(HANGMAN[len(INCORRECT)])
+        print(colored(HANGMAN[len(INCORRECT)], "yellow", attrs=["bold"]))
         print(f"\nWord: {GUESS_WORD}\n")
         ask_for_input()
         if len(HANGMAN)-1 == len(INCORRECT):
             game_over = True
-            print(GAME_OVER)
+            os.system("clear")
+            print(colored(GAME_OVER, "green"))
             print("\nOh no! You've been hanged!\n")
-            print(HANGMAN[6])
-            print(f"The word was {WORD}\n")
+            print(colored(HANGMAN[6], "red", attrs=["bold"]))
+            print(f"\nThe word was {WORD}\n")
             play_again()
         else:
             if "_" not in GUESS_WORD:
                 game_over = True
-                print(WIN, f"Well done {NAME}!" +
-                      " You've guessed the word and won!\n")
+                os.system("clear")
+                print(colored(WIN, "yellow"))
+                print(f"Well done {NAME}!" +
+                      f" The word was {WORD}, you guessed right!\n")
                 play_again()
 
 
@@ -166,23 +174,26 @@ def ask_for_input():
     check = True
     guess = ""
     while check:
-        guess = input("\nPlease guess a letter: ").upper()
+        guess = input(colored("\nPlease guess a letter: ", "cyan")).upper()
         try:
             if len(guess) == 1 and guess.isalpha():
                 if guess in INCORRECT or guess in CORRECT:
                     print("line 173", INCORRECT)  # Check
                     print("line 174", CORRECT)  # check
+                    os.system("clear")
                     raise ValueError("You've already guessed this letter",
                                      guess)
                 else:
                     check_correct(guess)
             if len(guess) > 1:
+                os.system("clear")
                 raise ValueError(f"You have guessed {len(guess)} "
                                  + "characters. Please guess 1 letter.")
             if not guess.isalpha():
+                os.system("clear")
                 raise ValueError("Please guess a letter.")
         except ValueError as e:
-            print(f"\nInvalid data: {e}")
+            print(colored(f"\nInvalid data: {e}", "red"))
         check = False
         return guess
 
@@ -220,7 +231,7 @@ def check_correct(guess):
         INCORRECT = INCORRECT + guess
         TRIES -= 1
         print(f"You have {TRIES} attempts remaining!")
-        print('\nIncorrect guesses:', end=" ")
+        print("\nIncorrect guesses: ", end=" ")
         for guess in INCORRECT:
             print(guess, end=" ")
 
@@ -231,15 +242,17 @@ def play_again():
     If the user chooses not to play a good bye message
     is displayed before returning user to start_game.
     """
+    sleep(2)
     while True:
-        if input(F"{NAME} would you like to play again?" +
-                 " Enter any key to quit" +
-                 " or Y to play again: ").upper() == "Y":
+        if input(colored(F"{NAME} would you like to play again?" +
+                         " Enter any key to quit or Y to play again: ",
+                         "cyan")).upper() == "Y":
             os.system("clear")
             display_game()
         else:
-            print(BYE)
-            print(f"Thanks for playing {NAME}!")
+            os.system("clear")
+            print(colored(BYE, "cyan"))
+            print(colored(f"Thanks for playing {NAME}!", "magenta"))
             sleep(3)
             os.system("clear")
             main()
