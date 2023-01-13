@@ -92,7 +92,9 @@ Color consistancy is used in the below instances:
 * Hangman array was taken from [Invent with Python](https://inventwithpython.com/invent4thed/chapter8.html)
 
 ### Flowchart
-![Flowchart]()
+Below is the initial design put together using [Lucid Chart](https://lucid.app/) to plan the logic of the game.
+
+![Flowchart](docs/flowchart.png)
 
 - - -
 
