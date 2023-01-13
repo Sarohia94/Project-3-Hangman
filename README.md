@@ -94,8 +94,13 @@ To assist the user, a hint is provided that words to be guessed in this game are
 ## Technologies Used
 
 ### Languages Used
+Python
 
 ### Frameworks, Libraries & Programs Used
+* [Am I responsive?](https://ui.dev/amiresponsive) - to show website across a range of devices.
+* Git - for version control. Using GitPod terminal to commit to Git and push to GitHub.
+* GitHub - to save and store the code pushed from Git.
+* [Lucid Chart](https://lucid.app/) - to create the flow chart.
 
 - - -
 
