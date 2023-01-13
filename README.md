@@ -78,10 +78,21 @@ To assist the user, a hint is provided that words to be guessed in this game are
 ## Design
 
 ### Colour Scheme
+The term color module was used to print colored text.
+
+Bright and bold colors were used throughout the game to draw the users attention.
+
+Color consistancy is used in the below instances:
+* Cyan is used largely when requesting user input.
+* Magenta is used largely when the user's chosen name is called alongside text to draw their attention.
+* Red is used largely when error messages are raised for invalid input.
 
 ### Graphics
+* ASCII art was taken from [Texteditor](https://texteditor.com/gallery/)
+* Hangman array was taken from [Invent with Python](https://inventwithpython.com/invent4thed/chapter8.html)
 
 ### Flowchart
+![Flowchart]()
 
 - - -
 
@@ -126,13 +137,13 @@ Issues raised in my project meetings with my mentor [Chris Quinn](https://github
 
 #### How to Clone
 1. Sign up or log in to GitHub
-2. Go to the repository https://github.com/Sarohia94/Project-2-History-Quiz
+2. Go to the repository https://github.com/Sarohia94/Project-3-Hangman
 3. Go to the code dropdown and select how you'd like clone and copy the link provided
 4. Go to the new repo and enter in your workspace terminal, "git clone" followed by the link copied
 
 #### How to Fork
 1. Sign up or log in to GitHub
-2. Go to the repository https://github.com/Sarohia94/Project-2-History-Quiz
+2. Go to the repository https://github.com/Sarohia94/Project-3-Hangman
 3. Click on the fork button towards the top right of the page 
 
 ### Remote Deployment
@@ -165,8 +176,7 @@ The website was deployed to GitHub Pages as follows:
 
 ### Content
 * The content was written by the developer Amritpreet Sarohia.
-* ASCII art was taken from:
-  * [Texteditor](https://texteditor.com/gallery/)
+* ASCII art was taken from [Texteditor](https://texteditor.com/gallery/)
 
 ### Acknowledgements 
 Thank you to anyone taking the time to view my third project. Special thanks to the Slack community and the below individuals:
