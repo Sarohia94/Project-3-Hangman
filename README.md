@@ -199,7 +199,6 @@ Testing carried out via [PEP8 Validator](https://pep8ci.herokuapp.com/):
 * [hangman.py](docs/testing/pep8/hangman-python.png) - 6 messages showing for, invalid escape sequence '\ '. These do not seem to affect the functionality of the game.
 * [words.py](docs/testing/pep8/words-python.png) - All clear, no errors found
 
-
 ### Manual Testing
 * Tested responsiveness with the different dimensions in dev tools and via [Responsive design checker](https://responsivedesignchecker.com/).
 * Tested website on mobile with [Chrome](docs/testing/manualtesting/chrome-mobile.jpg) & [Samsung internet](docs/testing/manualtesting/samsunginternet-mobile.jpg)
@@ -216,6 +215,8 @@ Testing carried out via [PEP8 Validator](https://pep8ci.herokuapp.com/):
 2. Go to the repository https://github.com/Sarohia94/Project-3-Hangman
 3. Go to the code dropdown and select how you'd like clone and copy the link provided
 4. Go to the new repo and enter in your workspace terminal, "git clone" followed by the link copied
+5. Install termcolor by entering "pip3 install termcolor" (without quotes) to the terminal 
+6. Enter the following command "pip3 freeze > requirements.txt" (without quotes) to the terminal to install the termcolor dependency which will be required if this is deployed to Heroku.
 
 #### How to Fork
 1. Sign up or log in to GitHub
@@ -233,11 +234,17 @@ The website was deployed to GitHub Pages as follows:
 7. It might take a few mins before you can refresh and view the link to the site published
 
 ### Deploy project to Heroku
-1. Sign up or log in to Heroku
-2. Create a new Heroku app
-3. Set the buildbacks to Python and NodeJS, in that order
-4. Link the Heroku app to the repositry 
-5. Click on Deploy
+1. Assuming you have cloned or forked the repository, sign up or log in to Heroku
+2. Go to "new" and click "create new app", the "creat new app" is also available from the dashboard
+3. Enter a unique app name and choose a region
+4. Click "create app"
+6. Go to the Settings tab and set the Buildbacks to Python and NodeJS, in that order
+7. On the same tab go to Config Vars, click "reveal config vars" and enter PORT in to "KEY" and 8000 in to "VALUE" and then click "Add"
+8. Now go to the Deploy tab and click "Connect to Github" from Deployment Method.
+9. Search by the repository name (which needs to match exactly) once this is found 
+10. Enable automatic deploys if preffered 
+11. Go to Manual deploy, the branch to deploy should be main and then click on "Deploy Branch"
+12. Once deployment is complete you can click "View" to open the game in Heroku
 
 - - -
 
