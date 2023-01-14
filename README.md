@@ -1,7 +1,7 @@
 # Hangman
 Hangman is a Python terminal game which runs on Heroku.
 
-Hangman is a word guessing game. This started out as a paper-and-pencil game that can involve two or more players. One player will think of a word, phrase or sentence and the other player(s) will try to guess the word within a certain number of guesses. Each incorrect guess will cause an element of hangman being drawn. If the players guess the word before the drawing is complete they win otherwise they lose to the player who set the word.
+Hangman is a word guessing game. This started out as a paper-and-pencil game that can involve two or more players. One player will think of a word, phrase or sentence and the other player(s) will try to guess the word within a certain number of guesses. Each incorrect guess will cause an element of hangman being drawn. If the players guess the word before the drawing is complete they win, otherwise they lose to the player who set the word.
 
 In this game the user plays against the computer which will generate a random word to be guessed. Instructions are provided in the game to teach the user how to play.
 
@@ -73,20 +73,23 @@ The target audience is anyone interested in playing a game of hangman. This coul
 
 #### Client Goals
 * To entertain users
+* To be able to learn how to play
 * To make it easy for users to interact with the game
+* To be clearly informed of invalid input and how to proceed
 * Win or lose, to play the game to completion without issue
 * To be able to choose to play again or quit
-* To be clearly informed of invalid user input and how to proceed
 
 #### First Time Visitor Goals
+* I want to enter my name.
 * I want instructions to be clear and concise.
-* I want to be able to learn how to play if I am new to the game.
+* I want to be able to learn how to play.
 * I want to be informed on what the issue is if an invalid input is made.
 * I want to be given instant feedback if a correct or incorrect guess is made.
 * I want to be informed when the game is over if I've won or lost.
+* I want to be able to play again or quit.
 
 #### Returning Visitor Goals
-* I want to be able to replay the game with a new word to guess
+* I want to be able to play the game multiple times with a new word to guess.
 
 - - -
 
@@ -114,8 +117,58 @@ Below is the initial design put together using [Lucid Chart](https://lucid.app/)
 - - -
 
 ## Features
+Below are the main features the user will come across when playing the game. The terminal is cleared each time to make it clean and prevent confusion if the user starts to scroll. The purposeful use of colors as explained in the design section, is also evidenced below.
+
+1. Hangman game is displayed, with a short message and a request for the user input their name. The name entered by the user is then used by the computer throughout the game to engage with the user.
+
+![First feature](docs/features/hangman1.png)
+
+2. The user is called by their name and welcomed to the game. Two menu options are provided, to either play the game or learn how to play. This menu driven interactivity has a clear message requesting input from the user on how they want to proceed.
+
+![Second feature](docs/features/hangman2.png)
+
+3. If the user chooses to learn how to play, an overview of the game is provided in clear, concise steps. Again a message is then displayed requesting user input in order to play the game.
+
+![Third feature](docs/features/hangman3.png)
+
+4. Once the user chooses to play the game, the computer will:
+* wish the user good luck,
+* provide the hint,
+* advise on the number or tries they get and
+* advise on the the length of the word
+
+The gallow and the word to be guessed (marked by underscores for each letter in the word) is displayed before the message requesting user input to guess a letter. As such there is a clear set up of the game in order for the user to start playing.
+
+![Fourth feature](docs/features/hangman4.png)
+
+5. If the user guess is correct, clear feedback is provided confirming the letter is in the word. The word to be guessed is updated for that letter wherever it occurs in the word replacing the underscore.
+
+![Fifth feature](docs/features/hangman5.png)
+
+6. If the user guess is incorrect, clear feedback is provided confirming the letter is not in the word. The incorrect guess is added to the "Incorrect guesses: ", the hangman image is updated and the user is updated on the number of attempts they have left to guess the word.
+
+![Sixth feature](docs/features/hangman6.png)
+
+7. If the user runs out of tries, game over is displayed with the hangman image completed. The user is informed of the complete word to provide them with some resolution. 
+
+![Seventh feature](docs/features/hangman7.png)
+
+8. If the user guesses all the correct letters while they have tries remaining, they win the game. They are rewarded with a trophy and a well done message confirming what the word was. 
+
+![Eighth feature](docs/features/hangman8.png)
+
+9. Whether the user wins or loses, the will computer follow up to provide instructions on how the user can proceed if they want quit or play again.
+
+![Ninth feature](docs/features/hangman9.png)
+
+10. If the user chooses to quit, a good bye message is displayed to thank the user for playing. If the user chooses to play again, they will be returned to feature 3 with a new word to guess.
+
+![Tenth feature](docs/features/hangman10.png)
 
 ### Future features
+* Add difficulty settings where the user can choose from easy or hard mode, the difference being the number of tries they get to guess the word.
+* Add a leaderboard, using Google sheets to keep track of the scores and update to leaderboard.
+* Add different sets words to play from i.e. animals, flowers, fruit etc
 
 - - -
 
