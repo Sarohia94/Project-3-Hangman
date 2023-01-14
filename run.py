@@ -143,7 +143,7 @@ def display_game():
     GUESS_WORD = "_" * len(WORD)
     print(colored(f"Good luck {NAME}! Guess the word and win the game!\n",
                   "magenta", attrs=["bold"]))
-    print("Hint: the word to guess are animals...\n")
+    print("Hint: the word to guess is an animal...\n")
     print(f"You have {len(HANGMAN)-1} attempts to guess the word.")
     print(f"\nThere are {len(WORD)} letters in this word.")
 
