@@ -60,18 +60,33 @@ To assist the user, a hint is provided that words to be guessed in this game are
 ## User Experience (UX)
 
 ### Initial Discussion
+In this hangman game the user plays against the computer to guess the word and win the game before they run out of tries and are hanged. 
+
+The target audience is anyone interested in playing a game of hangman. This could be a familiar childhood game for some but there are instructions provided for those who are new to the game.
 
 #### Key information:
+* User must enter a name to play
+* Instructions on how to play are provided if the user hasn't played before
+* Win or lose the user is given an option to play again
 
 ### User Stories
 
 #### Client Goals
+* To entertain users
+* To make it easy for users to interact with the game
+* Win or lose, to play the game to completion without issue
+* To be able to choose to play again or quit
+* To be clearly informed of invalid user input and how to proceed
 
 #### First Time Visitor Goals
+* I want instructions to be clear and concise.
+* I want to be able to learn how to play if I am new to the game.
+* I want to be informed on what the issue is if an invalid input is made.
+* I want to be given instant feedback if a correct or incorrect guess is made.
+* I want to be informed when the game is over if I've won or lost.
 
 #### Returning Visitor Goals
-
-#### Frequent Visitor Goals
+* I want to be able to replay the game with a new word to guess
 
 - - -
 
@@ -80,7 +95,7 @@ To assist the user, a hint is provided that words to be guessed in this game are
 ### Colour Scheme
 The term color module was used to print colored text.
 
-Bright and bold colors were used throughout the game to draw the users attention.
+Bright and bold colors were used throughout the game to draw the users attention for a specific purpose or engagement.
 
 Color consistancy is used in the below instances:
 * Cyan is used largely when requesting user input.
