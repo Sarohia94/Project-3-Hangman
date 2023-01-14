@@ -56,7 +56,7 @@ def menu():
 
     choice_made = False
     while choice_made is False:
-        menu_choice = input("\nNumber: ")
+        menu_choice = input("\nNumber: \n")
         try:
             if menu_choice == "1":
                 choice_made = True
@@ -98,7 +98,7 @@ def how_to_play():
 
     choice_made = False
     while choice_made is False:
-        menu_choice = input("Number: ")
+        menu_choice = input("Number: \n")
         try:
             if menu_choice == "1":
                 display_game()
@@ -177,7 +177,7 @@ def ask_for_input():
     check = True
     guess = ""
     while check:
-        guess = input(colored("\nPlease guess a letter: ", "cyan")).upper()
+        guess = input(colored("\nPlease guess a letter: \n", "cyan")).upper()
         try:
             if len(guess) == 1 and guess.isalpha():
                 if guess in INCORRECT or guess in CORRECT:
@@ -242,7 +242,7 @@ def play_again():
     sleep(3)
     while True:
         if input(colored(F"{NAME} would you like to play again?" +
-                         " Enter any key to quit or Y to play again: ",
+                         " Enter any key to quit or Y to play again: \n",
                          "cyan")).upper() == "Y":
             os.system("clear")
             display_game()
