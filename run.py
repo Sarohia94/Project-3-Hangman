@@ -1,4 +1,4 @@
-# All code and resources used are credited in the README file.
+# All code and resources used can be found credited in the README file.
 
 import os
 import random
@@ -69,7 +69,6 @@ def menu():
                 return menu_choice
             else:
                 os.system("clear")
-                start_game()
                 raise ValueError("Please enter 1 to play game" +
                                  " or 2 to learn how to play.\n")
         except ValueError as e:
@@ -108,7 +107,6 @@ def how_to_play():
                 choice_made = True
             else:
                 os.system("clear")
-                start_game()
                 raise ValueError("Please enter 1 to play the game.\n")
         except ValueError as e:
             print(colored(f"\nInvalid data: {e}", "red", attrs=["bold"]))
@@ -156,7 +154,7 @@ def display_game():
             game_over = True
             os.system("clear")
             print(colored(GAME_OVER, "green"))
-            print("\nOh no! You've been hanged!\n")
+            print("\nOh no! You've been hanged!")
             print(colored(HANGMAN[6], "red", attrs=["bold"]))
             print(f"\nThe word was {WORD}\n")
             play_again()
@@ -218,12 +216,15 @@ def check_correct(guess):
         os.system("clear")
         print("\nYes!", guess, "is in the word!")
         CORRECT = CORRECT + guess
+        # Credit code block to tutorial
+        # https://www.youtube.com/watch?v=m4nEnsavl6w
         word_as_list = list(GUESS_WORD)
         indices = [i for i, letter in enumerate(WORD.upper())
                    if letter == guess]
         for index in indices:
             word_as_list[index] = guess
             GUESS_WORD = "".join(word_as_list)
+        # End of credited code block to tutorial
     else:
         os.system("clear")
         print()
@@ -235,13 +236,12 @@ def check_correct(guess):
         if TRIES > 0:
             for guess in INCORRECT:
                 print(guess, end=" ")
-                print()
 
 
 def play_again():
     """
     The user is given the option to play again.
-    If the user chooses not to play a good bye message
+    If the user chooses not to play, a good bye message
     is displayed before returning user to start_game.
     """
     sleep(3)

@@ -1,3 +1,5 @@
+# Animal word list, where the random word is imported to run.py to run the game
+
 word_list = [
     "elephant",
     "giraffe",
