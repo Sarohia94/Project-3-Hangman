@@ -195,12 +195,10 @@ Issues raised in my project meetings with my mentor [Chris Quinn](https://github
 
 ### PEP8 
 Testing carried out via [PEP8 Validator](https://pep8ci.herokuapp.com/):
-* run.py - All clear, no errors found
-[run.py PEP8 validation](docs/testing/pep8/run-python.png)
-* hangman.py - 6 messages showing for, invalid escape sequence '\ '. These do not seem to affect the functionality of the game.
-[hangman.py PEP8 validation](docs/testing/pep8/hangman-python.png)
-* words.py - All clear, no errors found
-[words.py PEP8 validation](docs/testing/pep8/words-python.png)
+* [run.py](docs/testing/pep8/run-python.png) - All clear, no errors found
+* [hangman.py](docs/testing/pep8/hangman-python.png) - 6 messages showing for, invalid escape sequence '\ '. These do not seem to affect the functionality of the game.
+* [words.py](docs/testing/pep8/words-python.png) - All clear, no errors found
+
 
 ### Manual Testing
 * Tested responsiveness with the different dimensions in dev tools and via [Responsive design checker](https://responsivedesignchecker.com/).
