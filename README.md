@@ -47,12 +47,16 @@ In this game the user plays against the computer which will generate a random wo
 ## How to play
 
 The object of the game is to figure out the unknown word by guessing letters. 
+
 The length of the word is explicitly stated and is marked by underscores for each letter to be guessed. 
 If the letter guessed by the user is in the unknown word it will display by replacing the underscores wherever the letter occurs.
+
 If the guessed letter is not in the unknown word the user will lose a try. This will correspond to a person on the gallow being drawn, one part for each incorrect letter guessed. 
 i.e. in the order: head, body, left arm, right arm, left leg, right leg.
+
 As such the user will have 6 tries to guess the word before the drawing is complete and they are hanged.
 If the user successfully guesses the word before they run out of tries they win the game.
+
 To assist the user, a hint is provided that words to be guessed in this game are animals.
 
 - - -

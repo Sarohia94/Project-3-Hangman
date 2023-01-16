@@ -173,10 +173,13 @@ def ask_for_input():
     While the user still has tries, user input to guess is requested.
     If guess is valid then aslong as it hasn't been already guessed,
     the check_correct function is called to check if it is in the word.
-    Otherwise if guess is invalid error messages are raised.
+    If the user guesses the full word and it matches then user wins.
+    Otherwise, they will be informed if the guess is not the word.
+    If guess is invalid error messages are raised.
     """
     check = True
     guess = ""
+
     while check:
         guess = input(colored("\nPlease guess a letter: \n", "cyan",
                               attrs=["bold"])).upper()
@@ -187,11 +190,21 @@ def ask_for_input():
                     raise ValueError(f"You've already guessed letter {guess}")
                 else:
                     check_correct(guess)
-            if len(guess) > 1:
+            elif guess.isalpha() and len(guess) == len(WORD):
+                if guess == WORD.upper():
+                    full_word = WORD.upper()
+                    os.system("clear")
+                    print(colored(WIN, "yellow"))
+                    print(f"Well done {NAME}!" +
+                          f" The word was {full_word}, you guessed right!\n")
+                    play_again()
+                else:
+                    print(f"{guess}, is not the word.")
+            elif len(guess) > 1:
                 os.system("clear")
                 raise ValueError(f"You have guessed {len(guess)} "
                                  + "characters. Please guess 1 letter.")
-            if not guess.isalpha():
+            elif not guess.isalpha():
                 os.system("clear")
                 raise ValueError("Please guess a letter.")
         except ValueError as e:
