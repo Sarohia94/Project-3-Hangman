@@ -227,7 +227,7 @@ Testing carried out via [PEP8 Validator](https://pep8ci.herokuapp.com/):
 
 ### Manual Testing
 * Tested website on mobile with [Chrome](docs/testing/manualtesting/chrome-mobile.jpg) & [Samsung internet](docs/testing/manualtesting/samsunginternet-mobile.jpg)
-* Tested on tablet with [Amazon Silk browser](docs/testing/manualtesting/amazonsilkbrowser-tablet.png), laptop with [Microsoft Edge](docs/testing/manualtesting/microsoftedge-laptop.png) and desktop with [Microsoft Edge](docs/testing/manualtesting/microsoftedge-desktop.png).
+* Tested on laptop with [Microsoft Edge](docs/testing/manualtesting/microsoftedge-laptop.png) and desktop with [Firefox](docs/testing/manualtesting/firefox-desktop.png).
 
 - - -
 
