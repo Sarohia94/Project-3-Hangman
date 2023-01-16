@@ -224,9 +224,25 @@ Python
 ## Testing 
 Issues raised in my project meetings with my mentor [Chris Quinn](https://github.com/10xOXR) :
 
+1. It was suggested that to improve user experience, the user should be able to guess the full word if they think they know what the word is, rather than enter letter by letter to complete the word. The ask_for_input function was updated to account for this, which made for a better user experience. 
+
 ### Solved Bugs
 
+1. When I decided to split out my code to form smaller well defined functions, the way I had originally tried to write the code was by passing arguments. However, with the way I approached this, I was passing three or more functions. With guidance from Joshua from tutor support (see credits), I was able rework the code by largely declaring global variables which made my code a lot cleaner and now functional.
+
+2. Correct guesses were not displaying to the word. After consulting with my mentor and adding print statements, the issue became apparent (see credits). The equality between WORD and guess was failing as WORD was not printing in capitalised letters. Therefore WORD.upper() was used to resolve this.
+
+3. The incorrect guesses were displaying above the game over display for when the user uses all tries and is hanged.
+
+![Issue](docs/testing/issues/issue1.png)
+
+This was resolved by simply adding an if statement so that when TRIES = 0 this is not displayed to the game over screen.
+
+![Fix](docs/testing/issues/fix1.png)
+
 ### Known Bugs
+
+1. There are warning and information messages that show as problems in Gitpod but after going through these with my mentor, [Chris Quinn](https://github.com/10xOXR) I was assured that these would not be an issue and do not affect the functionality of the code. Moreover, these all passed the PEP8 validator.
 
 ### PEP8 
 Testing carried out via [PEP8 Validator](https://pep8ci.herokuapp.com/):
@@ -290,7 +306,7 @@ The website was deployed to GitHub Pages as follows:
 * The [How to build HANGMAN with Python in 10 MINUTES](https://www.youtube.com/watch?v=m4nEnsavl6w) was very useful as it gave me an overview on how to create a functioning minimum viable project. The code to update guesses to the underscores as they occur in the word was taken from this tutorial (run.py file, lines 221-226)
 * Joshua from tutor support advised on how to best break my code down in to smaller functions. When I was initially splitting out my code into smaller functions I was passing 3 or more arguments and the structure wasn't as clean as it could be so I was running in to issues. Joshua was able to assist in directing me how I may want to organise the code given what I had already.
 * Oisin from tutor support for helping me work through the kinks in my code. It helped a lot in making me think differently on how I can investigate issues and how to make the most out of print statments to check my code. 
-* [Chris Quinn](https://github.com/10xOXR), for helping me resolve and understand the error messages showing on gitpod. He also helped to advise on the issue where correct guesses were not displaying to the word. I followed his example in writing prnt statements with the line number of the code included. This really improved my ability to pin point where issues occur and what is being affected in the background. As such I was able to resolve subsequent issues on my own much faster.
+* [Chris Quinn](https://github.com/10xOXR), for helping me resolve and understand the error messages showing on gitpod. He also helped to advise on the issue where correct guesses were not displaying to the word. I followed his example in writing print statements with the line number of the code included. This really improved my ability to pin point where issues occur and what is being affected in the background. As such I was able to resolve subsequent issues on my own much faster.
 
 ### Content
 * The content was written by the developer Amritpreet Sarohia.
