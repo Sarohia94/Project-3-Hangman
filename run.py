@@ -199,6 +199,7 @@ def ask_for_input():
                           f" The word was {full_word}, you guessed right!\n")
                     play_again()
                 else:
+                    os.system("clear")
                     print(f"{guess}, is not the word.")
             elif len(guess) > 1:
                 os.system("clear")

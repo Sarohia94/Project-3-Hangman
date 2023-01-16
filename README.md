@@ -89,6 +89,7 @@ The target audience is anyone interested in playing a game of hangman. This coul
 * I want to be able to learn how to play.
 * I want to be informed on what the issue is if an invalid input is made.
 * I want to be given instant feedback if a correct or incorrect guess is made.
+* I want to be able to guess the full word if I think I know what it is.
 * I want to be informed when the game is over if I've won or lost.
 * I want to be able to play again or quit.
 
@@ -157,7 +158,7 @@ The gallow and the word to be guessed (marked by underscores for each letter in 
 
 ![Fourth feature](docs/features/hangman4.png)
 
-   User input is validated in three ways:
+   User input is validated in four ways:
    * if anything other than a letter is entered
 
 ![Fourth user input validation 1](docs/features/hangman4-validate-input1.png)
@@ -169,6 +170,10 @@ The gallow and the word to be guessed (marked by underscores for each letter in 
    * if letter guessed has already been guessed
 
 ![Fourth user input validation 3](docs/features/hangman4-validate-input3.png)
+
+   * If the user thinks they know the full word they can guess the full word. If their guess is correct the user wins. If not the below message is displayed.
+
+![Fourth user input validation 4](docs/features/hangman4-validate-input4.png)
 
 5. If the user guess is correct, clear feedback is provided confirming the letter is in the word. The word to be guessed is updated for that letter wherever it occurs in the word replacing the underscore.
 
