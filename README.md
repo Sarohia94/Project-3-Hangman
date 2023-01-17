@@ -228,7 +228,7 @@ Issues raised in my project meetings with my mentor [Chris Quinn](https://github
 
 ### Solved Bugs
 
-1. When I decided to split out my code to form smaller well defined functions, the way I had originally tried to write the code was by passing arguments. However, with the way I approached this, I was passing three or more functions. With guidance from Joshua from tutor support (see credits), I was able rework the code by largely declaring global variables which made my code a lot cleaner and now functional.
+1. When I decided to split out my code to form smaller well defined functions, the way I had originally tried to write the code was by passing arguments. However, with the way I approached this, I was passing three or more in a function. With guidance from Joshua from tutor support (see credits), I was directed to rethink how I can best construct the functions. As a result of that session, I decided to rework the code by largely declaring global variables which made my code a lot cleaner and now functional.
 
 2. Correct guesses were not displaying to the word. After consulting with my mentor and adding print statements, the issue became apparent (see credits). The equality between WORD and guess was failing as WORD was not printing in capitalised letters, like guess. Therefore, WORD.upper() was used to resolve this.
 
